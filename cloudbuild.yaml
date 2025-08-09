@@ -1,0 +1,15 @@
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+
+substitutions:
+  _REPO:
+  _REGION:
+  _PROJECT_ID:
+  _CONTAINER:
+
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', '$_REGION-docker.pkg.dev/$_PROJECT_ID/$_REPO/$_CONTAINER:latest', '.' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', '$_REGION-docker.pkg.dev/$_PROJECT_ID/$_REPO/$_CONTAINER:latest' ]

@@ -42,6 +42,12 @@ docker tag $CONTAINER $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$CONTAINER:
 
 docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$CONTAINER
 
+#Note if you don't have docker installed, use Cloud Build
+gcloud builds submit . \
+--project $PROJECT_ID \
+--region $REGION \
+--substitutions=_CONTAINER=$CONTAINER,_REGION=$REGION,_REPO=$REPOSITORY,_PROJECT_ID=$PROJECT_ID
+
 gcloud run deploy example \
 --project $PROJECT_ID \
 --region $REGION \
