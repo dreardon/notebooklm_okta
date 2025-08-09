@@ -1,0 +1,58 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Dashboard
+    link(rel="stylesheet", href="/static/css/style.css")
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap", rel="stylesheet")
+
+
+  body
+    aside.left-panel
+      .user-info
+        h2.user-name= user.name
+        p.user-email= user.email
+      nav.navigation
+        button#google-link.nav-button
+          i.fab.fa-google
+          span Google Search (iframe)
+        button#nblm.nav-button
+          i.fas.fa-vial
+          span NotebookLM
+      a.logout-button(href="/logout")
+        i.fas.fa-sign-out-alt
+        span Logout
+
+    main.right-panel
+      #iframe-placeholder.placeholder
+        h1 Welcome to your dashboard!
+        p Select a link from the left to get started.
+      iframe#content-iframe(src="about:blank", frameborder="0")
+
+    script.
+      document.addEventListener('DOMContentLoaded', () => {
+        const iframe = document.getElementById('content-iframe');
+        const placeholder = document.getElementById('iframe-placeholder');
+        const googleLink = document.getElementById('google-link');
+        const nbLink = document.getElementById('nblm');
+
+        function loadUrlInIframe(url) {
+          placeholder.style.display = 'none';
+          iframe.style.display = 'block';
+          iframe.src = url;
+        }
+
+        googleLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          loadUrlInIframe('https://www.google.com/search?igu=1');
+        });
+ 
+        nbLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.open('https://auth.cloud.google/signin/locations/global/workforcePools/#{workforce_pool}/providers/#{workforce_provider}?continueUrl=#{notebook_url}', '_blank');
+        });        
+
+      });

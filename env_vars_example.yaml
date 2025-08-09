@@ -1,0 +1,8 @@
+OKTA_ORG_URL: "[Okta Org URL with https://]"
+OKTA_CLIENT_ID: "okta_app_generated_client_id"
+OKTA_CLIENT_SECRET: "okta_app_generated_secret"
+APP_BASE_URL: "[Application URL, e.g. https://websiteurl.com]"
+EXPRESS_APP_SECRET: "11111111111111"
+WORKFORCE_PROVIDER: "provider"
+WORKFORCE_POOL: "pool"
+NOTEBOOK_URL: "https://notebooklm.cloud.google/global/?project=11111111111"
